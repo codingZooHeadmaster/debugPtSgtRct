@@ -44,8 +44,12 @@ sgt rct::randSgt(void) const
 rct rct::randRct(void) const
 {
     assert(valid());
+<<<<<<< HEAD
     sgt rSgt( randSgt() );
     rct rRand(rSgt.get_p1(), rSgt.get_p2());
+=======
+    rct rRand(randPt(), randPt());
+>>>>>>> 2ee020e0d3dd3ee87c307d7435d0b7b58dce81b7
     assert( contains(rRand) );
     return rRand;
 }
