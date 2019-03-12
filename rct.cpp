@@ -44,12 +44,7 @@ sgt rct::randSgt(void) const
 rct rct::randRct(void) const
 {
     assert(valid());
-    double xR1 = get_x1() + dRand(width());
-    double xR2 = xR1 + dRand(get_x2() - xR1);
-    double yR1 = get_y1() + dRand(height());
-    double yR2 = yR1 + dRand(get_y2() - yR1);
-
-    rct rRand(xR1, xR2, yR1, yR2);
+    rct rRand(randPt(), randPt());
     assert( contains(rRand) );
     return rRand;
 }
