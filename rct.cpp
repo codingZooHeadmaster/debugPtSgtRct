@@ -100,10 +100,11 @@ double rct::euclide(const pt& ptRef) const
 // la hauteur de dy, mais sans déplacement du centre. Les arguments dx et dy
 // peuvent être négatifs mais de valeur absolue inférieure, respectivement, à
 // la largueur ou la hauteur du rectangle, sinon une assertion est déclenchée
+#define DEBUG_RCT_INFLATE
 void rct::inflate(const double dx, const double dy) const
 {
     assert(valid());
-#ifdef _DEBUG
+#ifdef DEBUG_RCT_INFLATE
     pt OldCenter = centerPt();
     double OldWidth = width();
     double OldHeight = height();
@@ -114,8 +115,10 @@ void rct::inflate(const double dx, const double dy) const
     x1 -= dx/2.0; x2 += dx/2.0; y1 -= dy/2.0 ; y2 += dy/2.0;
 
     assert(valid());
-    assert( centerPt() == OldCenter.offset(dx,dy) );
-    assert( EPSEQUAL(width(), OldWidth) );
+#ifdef DEBUG_RCT_INFLATE
+    assert( centerPt() == OldCenter );
+    assert( EPSEQUAL(width(), OldWidth + dx) );
     assert( EPSEQUAL(height(), OldHeight+dy) );
+#endif
 }
 
